@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="maze_ruins">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <model name="outer_walls">
+      <static>true</static>
+      <link name="walls">
+        <collision name="north"><pose>0 9 0.5 0 0 0</pose><geometry><box><size>20 0.3 1.0</size></box></geometry></collision>
+        <collision name="south"><pose>0 -9 0.5 0 0 0</pose><geometry><box><size>20 0.3 1.0</size></box></geometry></collision>
+        <collision name="east"><pose>9 0 0.5 0 0 0</pose><geometry><box><size>0.3 18 1.0</size></box></geometry></collision>
+        <collision name="west"><pose>-9 0 0.5 0 0 0</pose><geometry><box><size>0.3 18 1.0</size></box></geometry></collision>
+        <visual name="north_v"><pose>0 9 0.5 0 0 0</pose><geometry><box><size>20 0.3 1.0</size></box></geometry></visual>
+        <visual name="south_v"><pose>0 -9 0.5 0 0 0</pose><geometry><box><size>20 0.3 1.0</size></box></geometry></visual>
+        <visual name="east_v"><pose>9 0 0.5 0 0 0</pose><geometry><box><size>0.3 18 1.0</size></box></geometry></visual>
+        <visual name="west_v"><pose>-9 0 0.5 0 0 0</pose><geometry><box><size>0.3 18 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="maze_segments">
+      <static>true</static>
+      <link name="segments">
+        <collision name="m1"><pose>-6.5 5.0 0.5 0 0 0</pose><geometry><box><size>0.3 7.0 1.0</size></box></geometry></collision>
+        <collision name="m2"><pose>-3.0 2.0 0.5 0 0 0</pose><geometry><box><size>7.0 0.3 1.0</size></box></geometry></collision>
+        <collision name="m3"><pose>1.5 4.8 0.5 0 0 0</pose><geometry><box><size>0.3 8.4 1.0</size></box></geometry></collision>
+        <collision name="m4"><pose>4.8 -1.8 0.5 0 0 0</pose><geometry><box><size>7.8 0.3 1.0</size></box></geometry></collision>
+        <collision name="m5"><pose>-1.0 -4.5 0.5 0 0 0</pose><geometry><box><size>10.0 0.3 1.0</size></box></geometry></collision>
+        <collision name="m6"><pose>-4.6 -1.6 0.5 0 0 0</pose><geometry><box><size>0.3 5.2 1.0</size></box></geometry></collision>
+        <collision name="m7"><pose>6.2 3.6 0.5 0 0 0</pose><geometry><box><size>0.3 5.6 1.0</size></box></geometry></collision>
+        <collision name="m8"><pose>0.8 -0.5 0.5 0 0 0</pose><geometry><box><size>6.4 0.3 1.0</size></box></geometry></collision>
+
+        <visual name="m1v"><pose>-6.5 5.0 0.5 0 0 0</pose><geometry><box><size>0.3 7.0 1.0</size></box></geometry></visual>
+        <visual name="m2v"><pose>-3.0 2.0 0.5 0 0 0</pose><geometry><box><size>7.0 0.3 1.0</size></box></geometry></visual>
+        <visual name="m3v"><pose>1.5 4.8 0.5 0 0 0</pose><geometry><box><size>0.3 8.4 1.0</size></box></geometry></visual>
+        <visual name="m4v"><pose>4.8 -1.8 0.5 0 0 0</pose><geometry><box><size>7.8 0.3 1.0</size></box></geometry></visual>
+        <visual name="m5v"><pose>-1.0 -4.5 0.5 0 0 0</pose><geometry><box><size>10.0 0.3 1.0</size></box></geometry></visual>
+        <visual name="m6v"><pose>-4.6 -1.6 0.5 0 0 0</pose><geometry><box><size>0.3 5.2 1.0</size></box></geometry></visual>
+        <visual name="m7v"><pose>6.2 3.6 0.5 0 0 0</pose><geometry><box><size>0.3 5.6 1.0</size></box></geometry></visual>
+        <visual name="m8v"><pose>0.8 -0.5 0.5 0 0 0</pose><geometry><box><size>6.4 0.3 1.0</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="ruins_pillars">
+      <static>true</static>
+      <link name="pillars">
+        <collision name="p1"><pose>-7.2 -6.5 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></collision>
+        <collision name="p2"><pose>7.0 6.6 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></collision>
+        <collision name="p3"><pose>3.8 6.2 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></collision>
+        <collision name="p4"><pose>-2.0 -7.0 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></collision>
+        <visual name="p1v"><pose>-7.2 -6.5 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></visual>
+        <visual name="p2v"><pose>7.0 6.6 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></visual>
+        <visual name="p3v"><pose>3.8 6.2 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></visual>
+        <visual name="p4v"><pose>-2.0 -7.0 0.6 0 0 0</pose><geometry><cylinder><radius>0.35</radius><length>1.2</length></cylinder></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

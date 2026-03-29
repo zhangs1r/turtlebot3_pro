@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="canyon_caves">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <model name="canyon_ridges">
+      <static>true</static>
+      <link name="ridges">
+        <collision name="r1"><pose>-10 0 1.0 0 0 0</pose><geometry><box><size>1.2 20 2.0</size></box></geometry></collision>
+        <collision name="r2"><pose>10 0 1.0 0 0 0</pose><geometry><box><size>1.2 20 2.0</size></box></geometry></collision>
+        <collision name="r3"><pose>0 9.5 1.0 0 0 0</pose><geometry><box><size>20 1.2 2.0</size></box></geometry></collision>
+        <collision name="r4"><pose>0 -9.5 1.0 0 0 0</pose><geometry><box><size>20 1.2 2.0</size></box></geometry></collision>
+
+        <collision name="path1"><pose>-5 3 0.8 0 0 0.35</pose><geometry><box><size>8 1.1 1.6</size></box></geometry></collision>
+        <collision name="path2"><pose>0 -1 0.8 0 0 -0.45</pose><geometry><box><size>10 1.1 1.6</size></box></geometry></collision>
+        <collision name="path3"><pose>5 3.5 0.8 0 0 0.2</pose><geometry><box><size>9 1.1 1.6</size></box></geometry></collision>
+        <collision name="path4"><pose>-2 -5.2 0.8 0 0 0.05</pose><geometry><box><size>8 1.1 1.6</size></box></geometry></collision>
+
+        <visual name="r1v"><pose>-10 0 1.0 0 0 0</pose><geometry><box><size>1.2 20 2.0</size></box></geometry></visual>
+        <visual name="r2v"><pose>10 0 1.0 0 0 0</pose><geometry><box><size>1.2 20 2.0</size></box></geometry></visual>
+        <visual name="r3v"><pose>0 9.5 1.0 0 0 0</pose><geometry><box><size>20 1.2 2.0</size></box></geometry></visual>
+        <visual name="r4v"><pose>0 -9.5 1.0 0 0 0</pose><geometry><box><size>20 1.2 2.0</size></box></geometry></visual>
+        <visual name="path1v"><pose>-5 3 0.8 0 0 0.35</pose><geometry><box><size>8 1.1 1.6</size></box></geometry></visual>
+        <visual name="path2v"><pose>0 -1 0.8 0 0 -0.45</pose><geometry><box><size>10 1.1 1.6</size></box></geometry></visual>
+        <visual name="path3v"><pose>5 3.5 0.8 0 0 0.2</pose><geometry><box><size>9 1.1 1.6</size></box></geometry></visual>
+        <visual name="path4v"><pose>-2 -5.2 0.8 0 0 0.05</pose><geometry><box><size>8 1.1 1.6</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="cave_columns">
+      <static>true</static>
+      <link name="columns">
+        <collision name="c1"><pose>-6.5 -2.0 0.9 0 0 0</pose><geometry><cylinder><radius>0.7</radius><length>1.8</length></cylinder></geometry></collision>
+        <collision name="c2"><pose>-1.5 4.8 0.9 0 0 0</pose><geometry><cylinder><radius>0.8</radius><length>1.8</length></cylinder></geometry></collision>
+        <collision name="c3"><pose>3.5 -3.8 0.9 0 0 0</pose><geometry><cylinder><radius>0.75</radius><length>1.8</length></cylinder></geometry></collision>
+        <collision name="c4"><pose>6.5 5.5 0.9 0 0 0</pose><geometry><cylinder><radius>0.6</radius><length>1.8</length></cylinder></geometry></collision>
+        <visual name="c1v"><pose>-6.5 -2.0 0.9 0 0 0</pose><geometry><cylinder><radius>0.7</radius><length>1.8</length></cylinder></geometry></visual>
+        <visual name="c2v"><pose>-1.5 4.8 0.9 0 0 0</pose><geometry><cylinder><radius>0.8</radius><length>1.8</length></cylinder></geometry></visual>
+        <visual name="c3v"><pose>3.5 -3.8 0.9 0 0 0</pose><geometry><cylinder><radius>0.75</radius><length>1.8</length></cylinder></geometry></visual>
+        <visual name="c4v"><pose>6.5 5.5 0.9 0 0 0</pose><geometry><cylinder><radius>0.6</radius><length>1.8</length></cylinder></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

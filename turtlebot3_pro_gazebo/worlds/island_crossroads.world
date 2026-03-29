@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="island_crossroads">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <model name="perimeter_and_cross">
+      <static>true</static>
+      <link name="pc">
+        <collision name="pn"><pose>0 11 0.8 0 0 0</pose><geometry><box><size>26 0.3 1.6</size></box></geometry></collision>
+        <collision name="ps"><pose>0 -11 0.8 0 0 0</pose><geometry><box><size>26 0.3 1.6</size></box></geometry></collision>
+        <collision name="pe"><pose>13 0 0.8 0 0 0</pose><geometry><box><size>0.3 22 1.6</size></box></geometry></collision>
+        <collision name="pw"><pose>-13 0 0.8 0 0 0</pose><geometry><box><size>0.3 22 1.6</size></box></geometry></collision>
+
+        <collision name="cross_h"><pose>0 0.5 0.7 0 0 0</pose><geometry><box><size>20 0.5 1.4</size></box></geometry></collision>
+        <collision name="cross_v"><pose>-0.5 0 0.7 0 0 0</pose><geometry><box><size>0.5 18 1.4</size></box></geometry></collision>
+
+        <visual name="pnv"><pose>0 11 0.8 0 0 0</pose><geometry><box><size>26 0.3 1.6</size></box></geometry></visual>
+        <visual name="psv"><pose>0 -11 0.8 0 0 0</pose><geometry><box><size>26 0.3 1.6</size></box></geometry></visual>
+        <visual name="pev"><pose>13 0 0.8 0 0 0</pose><geometry><box><size>0.3 22 1.6</size></box></geometry></visual>
+        <visual name="pwv"><pose>-13 0 0.8 0 0 0</pose><geometry><box><size>0.3 22 1.6</size></box></geometry></visual>
+        <visual name="cross_h_v"><pose>0 0.5 0.7 0 0 0</pose><geometry><box><size>20 0.5 1.4</size></box></geometry></visual>
+        <visual name="cross_v_v"><pose>-0.5 0 0.7 0 0 0</pose><geometry><box><size>0.5 18 1.4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="islands">
+      <static>true</static>
+      <link name="island_link">
+        <collision name="i1"><pose>-6.5 6.5 0.45 0 0 0</pose><geometry><box><size>2.5 2.5 0.9</size></box></geometry></collision>
+        <collision name="i2"><pose>6.8 6.2 0.45 0 0 0</pose><geometry><box><size>2.0 3.0 0.9</size></box></geometry></collision>
+        <collision name="i3"><pose>-6.8 -6.4 0.45 0 0 0</pose><geometry><box><size>3.0 2.0 0.9</size></box></geometry></collision>
+        <collision name="i4"><pose>7.0 -6.8 0.45 0 0 0</pose><geometry><box><size>2.4 2.4 0.9</size></box></geometry></collision>
+        <collision name="i5"><pose>3.2 3.3 0.55 0 0 0</pose><geometry><cylinder><radius>1.1</radius><length>1.1</length></cylinder></geometry></collision>
+        <collision name="i6"><pose>-3.4 -3.2 0.55 0 0 0</pose><geometry><cylinder><radius>1.2</radius><length>1.1</length></cylinder></geometry></collision>
+
+        <visual name="i1v"><pose>-6.5 6.5 0.45 0 0 0</pose><geometry><box><size>2.5 2.5 0.9</size></box></geometry></visual>
+        <visual name="i2v"><pose>6.8 6.2 0.45 0 0 0</pose><geometry><box><size>2.0 3.0 0.9</size></box></geometry></visual>
+        <visual name="i3v"><pose>-6.8 -6.4 0.45 0 0 0</pose><geometry><box><size>3.0 2.0 0.9</size></box></geometry></visual>
+        <visual name="i4v"><pose>7.0 -6.8 0.45 0 0 0</pose><geometry><box><size>2.4 2.4 0.9</size></box></geometry></visual>
+        <visual name="i5v"><pose>3.2 3.3 0.55 0 0 0</pose><geometry><cylinder><radius>1.1</radius><length>1.1</length></cylinder></geometry></visual>
+        <visual name="i6v"><pose>-3.4 -3.2 0.55 0 0 0</pose><geometry><cylinder><radius>1.2</radius><length>1.1</length></cylinder></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>

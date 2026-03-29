@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="office_forks">
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <model name="office_layout">
+      <static>true</static>
+      <link name="layout">
+        <collision name="n"><pose>0 8 0.7 0 0 0</pose><geometry><box><size>18 0.25 1.4</size></box></geometry></collision>
+        <collision name="s"><pose>0 -8 0.7 0 0 0</pose><geometry><box><size>18 0.25 1.4</size></box></geometry></collision>
+        <collision name="e"><pose>9 0 0.7 0 0 0</pose><geometry><box><size>0.25 16 1.4</size></box></geometry></collision>
+        <collision name="w"><pose>-9 0 0.7 0 0 0</pose><geometry><box><size>0.25 16 1.4</size></box></geometry></collision>
+
+        <collision name="hall_1"><pose>0 3.5 0.7 0 0 0</pose><geometry><box><size>14 0.25 1.4</size></box></geometry></collision>
+        <collision name="hall_2"><pose>-1 -1.5 0.7 0 0 0</pose><geometry><box><size>16 0.25 1.4</size></box></geometry></collision>
+        <collision name="split_1"><pose>-4.5 1.0 0.7 0 0 0</pose><geometry><box><size>0.25 5.0 1.4</size></box></geometry></collision>
+        <collision name="split_2"><pose>2.5 1.0 0.7 0 0 0</pose><geometry><box><size>0.25 5.0 1.4</size></box></geometry></collision>
+        <collision name="room_block"><pose>5.5 -4.5 0.7 0 0 0</pose><geometry><box><size>5.5 0.25 1.4</size></box></geometry></collision>
+        <collision name="room_block_2"><pose>3.0 -5.8 0.7 0 0 1.57</pose><geometry><box><size>3.2 0.25 1.4</size></box></geometry></collision>
+
+        <visual name="n_v"><pose>0 8 0.7 0 0 0</pose><geometry><box><size>18 0.25 1.4</size></box></geometry></visual>
+        <visual name="s_v"><pose>0 -8 0.7 0 0 0</pose><geometry><box><size>18 0.25 1.4</size></box></geometry></visual>
+        <visual name="e_v"><pose>9 0 0.7 0 0 0</pose><geometry><box><size>0.25 16 1.4</size></box></geometry></visual>
+        <visual name="w_v"><pose>-9 0 0.7 0 0 0</pose><geometry><box><size>0.25 16 1.4</size></box></geometry></visual>
+        <visual name="hall_1_v"><pose>0 3.5 0.7 0 0 0</pose><geometry><box><size>14 0.25 1.4</size></box></geometry></visual>
+        <visual name="hall_2_v"><pose>-1 -1.5 0.7 0 0 0</pose><geometry><box><size>16 0.25 1.4</size></box></geometry></visual>
+        <visual name="split_1_v"><pose>-4.5 1.0 0.7 0 0 0</pose><geometry><box><size>0.25 5.0 1.4</size></box></geometry></visual>
+        <visual name="split_2_v"><pose>2.5 1.0 0.7 0 0 0</pose><geometry><box><size>0.25 5.0 1.4</size></box></geometry></visual>
+        <visual name="room_block_v"><pose>5.5 -4.5 0.7 0 0 0</pose><geometry><box><size>5.5 0.25 1.4</size></box></geometry></visual>
+        <visual name="room_block_2_v"><pose>3.0 -5.8 0.7 0 0 1.57</pose><geometry><box><size>3.2 0.25 1.4</size></box></geometry></visual>
+      </link>
+    </model>
+
+    <model name="office_furniture">
+      <static>true</static>
+      <link name="furniture">
+        <collision name="desk1"><pose>-7.0 6.0 0.4 0 0 0</pose><geometry><box><size>1.2 0.8 0.8</size></box></geometry></collision>
+        <collision name="desk2"><pose>6.4 6.0 0.4 0 0 0</pose><geometry><box><size>1.2 0.8 0.8</size></box></geometry></collision>
+        <collision name="desk3"><pose>-6.5 -6.2 0.4 0 0 0</pose><geometry><box><size>1.3 0.9 0.8</size></box></geometry></collision>
+        <collision name="desk4"><pose>7.0 -6.6 0.4 0 0 0</pose><geometry><box><size>1.3 0.9 0.8</size></box></geometry></collision>
+        <collision name="sofa"><pose>0.0 0.9 0.35 0 0 1.57</pose><geometry><box><size>1.8 0.7 0.7</size></box></geometry></collision>
+        <visual name="desk1v"><pose>-7.0 6.0 0.4 0 0 0</pose><geometry><box><size>1.2 0.8 0.8</size></box></geometry></visual>
+        <visual name="desk2v"><pose>6.4 6.0 0.4 0 0 0</pose><geometry><box><size>1.2 0.8 0.8</size></box></geometry></visual>
+        <visual name="desk3v"><pose>-6.5 -6.2 0.4 0 0 0</pose><geometry><box><size>1.3 0.9 0.8</size></box></geometry></visual>
+        <visual name="desk4v"><pose>7.0 -6.6 0.4 0 0 0</pose><geometry><box><size>1.3 0.9 0.8</size></box></geometry></visual>
+        <visual name="sofav"><pose>0.0 0.9 0.35 0 0 1.57</pose><geometry><box><size>1.8 0.7 0.7</size></box></geometry></visual>
+      </link>
+    </model>
+  </world>
+</sdf>
