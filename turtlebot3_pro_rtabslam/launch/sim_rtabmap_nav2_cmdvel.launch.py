@@ -13,8 +13,10 @@
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
+from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
 
@@ -32,6 +34,7 @@ def generate_launch_description():
 
     autostart = LaunchConfiguration('autostart')
     params_file = LaunchConfiguration('params_file')
+    use_goal_pose_bridge = LaunchConfiguration('use_goal_pose_bridge')
 
     sim_launch = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
@@ -83,6 +86,14 @@ def generate_launch_description():
         }.items(),
     )
 
+    goal_pose_bridge_node = Node(
+        package='turtlebot3_pro_rtabslam',
+        executable='goal_pose_to_nav2_action.py',
+        name='goal_pose_to_nav2_action',
+        output='screen',
+        condition=IfCondition(use_goal_pose_bridge),
+    )
+
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
         DeclareLaunchArgument('world_file', default_value='warehouse_grid.world'),
@@ -95,6 +106,11 @@ def generate_launch_description():
         DeclareLaunchArgument('qos', default_value='2'),
         DeclareLaunchArgument('autostart', default_value='true'),
         DeclareLaunchArgument(
+            'use_goal_pose_bridge',
+            default_value='true',
+            description='Bridge /goal_pose (PoseStamped) to Nav2 navigate_to_pose action',
+        ),
+        DeclareLaunchArgument(
             'params_file',
             default_value=PathJoinSubstitution([
                 FindPackageShare('turtlebot3_pro_rtabslam'),
@@ -105,4 +121,5 @@ def generate_launch_description():
         sim_launch,
         rtabmap_launch,
         nav2_launch,
+        goal_pose_bridge_node,
     ])

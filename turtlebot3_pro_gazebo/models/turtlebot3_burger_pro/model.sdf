@@ -352,7 +352,7 @@
       </collision>
     </link>
 
-    <!-- 相机链接 + 相机插件（发布 image_raw/camera_info） -->
+    <!-- 相机链接 + 深度相机插件（模拟 RealSense 话题风格） -->
     <link name="camera_link">
       <inertial>
         <pose>0.012 0.0 0.155 0 0 0</pose>
@@ -368,42 +368,32 @@
       </inertial>
 
       <pose>0.012 0.0 0.155 0 0 0</pose>
-      <sensor name="camera" type="wideanglecamera">
-        <!-- 这里用 wideanglecamera 近似 D435i 的彩色相机视场 -->
+      <sensor name="camera" type="depth">
         <always_on>true</always_on>
         <visualize>true</visualize>
-        <update_rate>30</update_rate>
-        <camera name="picam">
-          <horizontal_fov>3.183</horizontal_fov>
+        <update_rate>10</update_rate>
+        <camera name="camera">
+          <horizontal_fov>1.39626</horizontal_fov>
           <image>
-            <width>320</width>
-            <height>240</height>
+            <width>640</width>
+            <height>480</height>
             <format>R8G8B8</format>
           </image>
           <clip>
             <near>0.03</near>
-            <far>100</far>
+            <far>10.0</far>
           </clip>
-          <lens>
-            <type>custom</type>
-            <custom_function>
-              <c1>1.05</c1>
-              <c2>4</c2>
-              <f>1.0</f>
-              <fun>tan</fun>
-            </custom_function>
-            <scale_to_hfov>true</scale_to_hfov>
-            <cutoff_angle>3.1415</cutoff_angle>
-            <env_texture_size>512</env_texture_size>
-          </lens>
         </camera>
         <plugin name="camera_driver" filename="libgazebo_ros_camera.so">
           <alwaysOn>true</alwaysOn>
-          <updateRate>30.0</updateRate>
+          <updateRate>10.0</updateRate>
           <cameraName>camera</cameraName>
           <frameName>camera_link</frameName>
-          <imageTopicName>image_raw</imageTopicName>
-          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <!-- 对齐本项目 RTAB-Map 订阅约定 -->
+          <imageTopicName>color/image_raw</imageTopicName>
+          <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>aligned_depth_to_color/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>aligned_depth_to_color/camera_info</depthImageCameraInfoTopicName>
           <hackBaseline>0.07</hackBaseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>

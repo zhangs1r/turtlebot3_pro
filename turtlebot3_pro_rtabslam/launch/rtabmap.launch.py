@@ -44,7 +44,8 @@ def generate_launch_description():
         'map_frame_id': 'map',
         'database_path': database_path,
         'approx_sync': True,
-        'queue_size': 500,
+        'topic_queue_size': 10,
+        'sync_queue_size': 50,
         'approx_sync_max_interval': 0.5,
         'Reg/Strategy': '2',
         'Reg/Force3DoF': 'true',
@@ -83,10 +84,12 @@ def generate_launch_description():
     # 话题重映射 (显式使用绝对路径)
     # RTAB-Map 节点的输入接口名是相对话题（rgb/image、depth/image 等），这里把它们连到
     # 本工程中 RealSense/RPLIDAR/里程计的实际话题上，避免依赖任何外部 remap 习惯。
+    # 仿真模型当前发布的是 /camera/image_raw 与 /camera/depth/image_raw，
+    # 这里按实际话题进行映射，避免因话题名不一致导致 RTAB-Map 无输入。
     remappings = [
-        ('rgb/image', '/camera/color/image_raw'),
-        ('rgb/camera_info', '/camera/color/camera_info'),
-        ('depth/image', '/camera/aligned_depth_to_color/image_raw'),
+        ('rgb/image', '/camera/image_raw'),
+        ('rgb/camera_info', '/camera/camera_info'),
+        ('depth/image', '/camera/depth/image_raw'),
         ('scan', '/scan'),
         ('odom', '/odom'),
     ]
