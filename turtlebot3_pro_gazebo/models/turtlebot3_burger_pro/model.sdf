@@ -112,6 +112,8 @@
 
     <!-- RPLIDAR A2M12 链接 + Ray Sensor（发布 /scan） -->
     <link name="base_scan">
+      <pose>-0.032 0 0.172 0 0 0</pose>
+
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <inertia>
@@ -473,7 +475,7 @@
     <joint name="lidar_joint" type="fixed">
       <parent>base_link</parent>
       <child>base_scan</child>
-      <pose>-0.032 0 0.172 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <axis>
         <xyz>0 0 1</xyz>
       </axis>
