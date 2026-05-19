@@ -356,7 +356,7 @@
 
     <!-- RealSense D435i 近似模型 + 深度相机插件 -->
     <link name="camera_link">
-      <pose>0.085 0 0.185 0 0 0</pose>
+      <pose>0.035 0 0.185 0 0 0</pose>
 
       <inertial>
         <pose>0 0 0 0 0 0</pose>

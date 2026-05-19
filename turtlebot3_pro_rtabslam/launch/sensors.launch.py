@@ -116,7 +116,7 @@ def generate_launch_description():
         # - 机械安装图纸/测量值，或
         # - 标定工具（例如手眼标定/AprilTag），或
         # - 先用粗略值跑通，再在 RViz 中微调验证。
-        arguments=['0.085', '0', '0.195', '0', '0', '0', 'base_footprint', 'camera_link']
+        arguments=['0.035', '0', '0.195', '0', '0', '0', 'base_footprint', 'camera_link']
     )
 
     # 静态 TF：base_link -> base_scan (如果机器人描述文件未提供)
