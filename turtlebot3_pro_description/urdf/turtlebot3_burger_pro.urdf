@@ -185,24 +185,24 @@
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
     </inertial>
   </link>
-  <!-- D435i 近似安装位姿：前上方 -->
+  <!-- D435i 近似安装位姿：顶层前沿，位于 RPLIDAR 前方 -->
   <joint name="camera_joint" type="fixed">
     <parent link="base_link"/>
     <child link="camera_link"/>
-    <origin rpy="0 0 0" xyz="0.012 0 0.165"/>
+    <origin rpy="0 0 0" xyz="0.085 0 0.185"/>
   </joint>
   <link name="camera_link">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.09 0.025 0.025"/>
+        <box size="0.025 0.09 0.025"/>
       </geometry>
       <material name="blue"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <box size="0.09 0.025 0.025"/>
+        <box size="0.025 0.09 0.025"/>
       </geometry>
     </collision>
     <inertial>

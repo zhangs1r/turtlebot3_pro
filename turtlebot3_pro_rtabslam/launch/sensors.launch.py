@@ -104,10 +104,10 @@ def generate_launch_description():
         }.items()
     )
 
-    # 静态 TF：base_link -> camera_link
+    # 静态 TF：base_footprint -> camera_link
     # 请根据实际安装位置调整这些值
     # x y z yaw pitch roll
-    #arguments=['0.1', '0', '0.2', '0', '0', '0', 'base_link', 'camera_link']
+    # 照片估计：D435i 位于顶层前沿、RPLIDAR 前方；精确值后续可用标定修正。
     camera_tf = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
@@ -116,7 +116,7 @@ def generate_launch_description():
         # - 机械安装图纸/测量值，或
         # - 标定工具（例如手眼标定/AprilTag），或
         # - 先用粗略值跑通，再在 RViz 中微调验证。
-        arguments=['0.012', '0', '0.165', '0', '0', '0', 'base_footprint', 'camera_link']
+        arguments=['0.085', '0', '0.195', '0', '0', '0', 'base_footprint', 'camera_link']
     )
 
     # 静态 TF：base_link -> base_scan (如果机器人描述文件未提供)

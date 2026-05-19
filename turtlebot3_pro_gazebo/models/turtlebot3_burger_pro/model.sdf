@@ -356,6 +356,8 @@
 
     <!-- RealSense D435i 近似模型 + 深度相机插件 -->
     <link name="camera_link">
+      <pose>0.085 0 0.185 0 0 0</pose>
+
       <inertial>
         <pose>0 0 0 0 0 0</pose>
         <inertia>
@@ -373,7 +375,7 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.090 0.025 0.025</size>
+            <size>0.025 0.090 0.025</size>
           </box>
         </geometry>
       </collision>
@@ -382,7 +384,7 @@
         <pose>0 0 0 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.090 0.025 0.025</size>
+            <size>0.025 0.090 0.025</size>
           </box>
         </geometry>
         <material>
@@ -484,7 +486,7 @@
     <joint name="camera_joint" type="fixed">
       <parent>base_link</parent>
       <child>camera_link</child>
-      <pose>0.012 0.0 0.165 0 0 0</pose>
+      <pose>0 0 0 0 0 0</pose>
       <axis>
         <xyz>0 0 1</xyz>
       </axis>
