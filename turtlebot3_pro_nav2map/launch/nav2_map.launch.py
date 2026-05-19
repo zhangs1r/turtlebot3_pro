@@ -19,6 +19,7 @@ def generate_launch_description():
     use_nav2_rviz = LaunchConfiguration('use_nav2_rviz')
     params_file = LaunchConfiguration('params_file')
     autostart = LaunchConfiguration('autostart')
+    gui = LaunchConfiguration('gui')
 
     # 1) 基于你现有的 slam.launch.py：仿真 + cartographer
     slam_launch = IncludeLaunchDescription(
@@ -38,6 +39,7 @@ def generate_launch_description():
             'y_pose': '0.0',
             'z_pose': '0.01',
             'yaw': '0.0',
+            'gui': gui,
         }.items(),
     )
 
@@ -92,6 +94,7 @@ def generate_launch_description():
         DeclareLaunchArgument('world_file', default_value='warehouse_grid.world'),
         DeclareLaunchArgument('autostart', default_value='true'),
         DeclareLaunchArgument('use_nav2_rviz', default_value='true'),
+        DeclareLaunchArgument('gui', default_value='true'),
         DeclareLaunchArgument(
             'params_file',
             default_value=os.path.join(

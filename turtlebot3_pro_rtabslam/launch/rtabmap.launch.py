@@ -29,6 +29,14 @@ def generate_launch_description():
     localization = LaunchConfiguration('localization', default='false')
     database_path = LaunchConfiguration('database_path', default='~/.ros/rtabmap.db')
     qos = LaunchConfiguration('qos', default='2')
+    rgb_image_topic = LaunchConfiguration('rgb_image_topic', default='/camera/color/image_raw')
+    rgb_camera_info_topic = LaunchConfiguration('rgb_camera_info_topic', default='/camera/color/camera_info')
+    depth_image_topic = LaunchConfiguration(
+        'depth_image_topic',
+        default='/camera/aligned_depth_to_color/image_raw',
+    )
+    scan_topic = LaunchConfiguration('scan_topic', default='/scan')
+    odom_topic = LaunchConfiguration('odom_topic', default='/odom')
 
     # 共同参数：
     # - subscribe_depth/subscribe_scan：订阅深度图与激光，组成 RGB-D + 2D LiDAR 的融合输入。
@@ -51,7 +59,7 @@ def generate_launch_description():
         'Reg/Force3DoF': 'true',
         'Grid/Sensor': '0',
         'Grid/FromDepth': 'false',
-        'Grid/RangeMax': '10.0',
+        'Grid/RangeMax': '12.0',
         'Rtabmap/PublishMapData': 'true',
         'Rtabmap/DetectionRate': '2.0',
         'RGBD/LinearUpdate': '0.01',
@@ -84,14 +92,13 @@ def generate_launch_description():
     # 话题重映射 (显式使用绝对路径)
     # RTAB-Map 节点的输入接口名是相对话题（rgb/image、depth/image 等），这里把它们连到
     # 本工程中 RealSense/RPLIDAR/里程计的实际话题上，避免依赖任何外部 remap 习惯。
-    # 仿真模型当前发布的是 /camera/image_raw 与 /camera/depth/image_raw，
-    # 这里按实际话题进行映射，避免因话题名不一致导致 RTAB-Map 无输入。
+    # 默认值面向真机 RealSense D435i；仿真 SDF 也 remap 到同一套话题约定。
     remappings = [
-        ('rgb/image', '/camera/image_raw'),
-        ('rgb/camera_info', '/camera/camera_info'),
-        ('depth/image', '/camera/depth/image_raw'),
-        ('scan', '/scan'),
-        ('odom', '/odom'),
+        ('rgb/image', rgb_image_topic),
+        ('rgb/camera_info', rgb_camera_info_topic),
+        ('depth/image', depth_image_topic),
+        ('scan', scan_topic),
+        ('odom', odom_topic),
     ]
     
     rtabmap_mapping_node = Node(
@@ -134,6 +141,14 @@ def generate_launch_description():
         DeclareLaunchArgument('localization', default_value='false'),
         DeclareLaunchArgument('database_path', default_value='~/.ros/rtabmap.db'),
         DeclareLaunchArgument('qos', default_value='2'),
+        DeclareLaunchArgument('rgb_image_topic', default_value='/camera/color/image_raw'),
+        DeclareLaunchArgument('rgb_camera_info_topic', default_value='/camera/color/camera_info'),
+        DeclareLaunchArgument(
+            'depth_image_topic',
+            default_value='/camera/aligned_depth_to_color/image_raw',
+        ),
+        DeclareLaunchArgument('scan_topic', default_value='/scan'),
+        DeclareLaunchArgument('odom_topic', default_value='/odom'),
         rtabmap_mapping_node,
         rtabmap_localization_node,
         map_assembler_node

@@ -1,0 +1,55 @@
+# Full pinned requirements for Colab (Python 3.10, GPU runtime)
+# Install with:
+#   pip install -r requirements_colab_full.txt
+
+# Core numeric stack
+numpy==1.26.4
+scipy==1.11.4
+
+# Vision / map processing
+scikit-image==0.22.0
+imageio==2.34.2
+pillow==10.4.0
+networkx==3.2.1
+PyWavelets==1.6.0
+tifffile==2024.7.24
+lazy_loader==0.4
+
+# Plotting
+matplotlib==3.8.4
+contourpy==1.2.1
+cycler==0.12.1
+fonttools==4.53.1
+kiwisolver==1.4.5
+pyparsing==3.1.2
+python-dateutil==2.9.0.post0
+
+# Deep learning + logging
+# Note: Colab may already preinstall torch. Keeping it pinned for reproducibility.
+torch==2.5.1
+tensorboard==2.17.1
+tensorboard-data-server==0.7.2
+absl-py==2.1.0
+grpcio==1.65.4
+markdown==3.7
+protobuf==4.25.4
+werkzeug==3.0.3
+
+# Distributed rollout / orchestration
+ray==2.34.0
+msgpack==1.0.8
+pyyaml==6.0.2
+attrs==24.2.0
+jsonschema==4.23.0
+filelock==3.15.4
+requests==2.32.3
+psutil==6.0.0
+
+# Small utilities commonly needed by above stack
+packaging==24.1
+typing_extensions==4.12.2
+six==1.16.0
+idna==3.7
+urllib3==2.2.2
+certifi==2024.7.4
+charset-normalizer==3.3.2

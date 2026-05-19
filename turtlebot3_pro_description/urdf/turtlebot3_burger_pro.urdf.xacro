@@ -5,7 +5,7 @@
   说明：
   1) 本文件是“源文件”，建议优先修改这里。
   2) turtlebot3_burger_pro.urdf 可由 xacro 展开生成，适合运行时直接加载。
-  3) 本体几何基本沿用 TB3 Burger，新增/调整了 camera_link 位姿用于你当前改装结构。
+  3) 本体几何基本沿用 TB3 Burger，传感器按 RPLIDAR A2M12 + RealSense D435i 改装结构近似。
 -->
 <robot name="turtlebot3_burger"
   xmlns:xacro="http://ros.org/wiki/xacro">
@@ -171,20 +171,20 @@
     <visual>
       <origin xyz="0 0 0.0" rpy="0 0 0"/>
       <geometry>
-        <mesh filename="package://turtlebot3_description/meshes/sensors/lds.stl" scale="0.001 0.001 0.001"/>
+        <cylinder length="0.041" radius="0.038"/>
       </geometry>
       <material name="dark"/>
     </visual>
 
     <collision>
-      <origin xyz="0.015 0 -0.0065" rpy="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-        <cylinder length="0.0315" radius="0.055"/>
+        <cylinder length="0.041" radius="0.038"/>
       </geometry>
     </collision>
 
     <inertial>
-      <mass value="0.114" />
+      <mass value="0.19" />
       <origin xyz="0 0 0" />
       <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
     </inertial>
@@ -194,7 +194,7 @@
   <joint name="${namespace}camera_joint" type="fixed">
     <parent link="${namespace}base_link"/>
     <child link="${namespace}camera_link"/>
-    <origin xyz="0.012 0 0.155" rpy="0 0 0"/>
+    <origin xyz="0.012 0 0.165" rpy="0 0 0"/>
   </joint>
 
   <link name="${namespace}camera_link">

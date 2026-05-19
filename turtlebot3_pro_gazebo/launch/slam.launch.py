@@ -22,6 +22,9 @@ def generate_launch_description():
     z_pose = LaunchConfiguration('z_pose')
     yaw = LaunchConfiguration('yaw')
     use_rviz = LaunchConfiguration('use_rviz')
+    gui = LaunchConfiguration('gui')
+    cartographer_config_dir = LaunchConfiguration('cartographer_config_dir')
+    configuration_basename = LaunchConfiguration('configuration_basename')
 
     # 先起仿真环境（Gazebo + robot + 传感器）
     sim_launch = IncludeLaunchDescription(
@@ -35,6 +38,7 @@ def generate_launch_description():
             'y_pose': y_pose,
             'z_pose': z_pose,
             'yaw': yaw,
+            'gui': gui,
         }.items(),
     )
 
@@ -51,12 +55,25 @@ def generate_launch_description():
         launch_arguments={
             'use_sim_time': use_sim_time,
             'use_rviz': use_rviz,
+            'cartographer_config_dir': cartographer_config_dir,
+            'configuration_basename': configuration_basename,
         }.items(),
     )
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true'),
         DeclareLaunchArgument('use_rviz', default_value='true'),
+        DeclareLaunchArgument('gui', default_value='true'),
+        DeclareLaunchArgument(
+            'cartographer_config_dir',
+            default_value=os.path.join(pkg_share, 'config'),
+            description='Directory containing Cartographer Lua configs',
+        ),
+        DeclareLaunchArgument(
+            'configuration_basename',
+            default_value='turtlebot3_a2m12_2d.lua',
+            description='Cartographer Lua configuration file',
+        ),
         DeclareLaunchArgument(
             'world_file',
             default_value='warehouse_grid.world',

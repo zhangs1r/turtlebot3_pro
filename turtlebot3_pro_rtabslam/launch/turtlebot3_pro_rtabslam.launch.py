@@ -10,7 +10,8 @@ TurtleBot3 + RTAB-Map + Nav2 的顶层启动入口。
 
 约定（本包内多个文件共享的假设）：
 - 坐标系：map / odom / base_footprint（RTAB-Map 与 rtabmap_viz 统一用 base_footprint）。
-- 传感器话题：激光使用 /scan；相机使用 /camera/...（来自 realsense2_camera 默认命名）。
+- 传感器话题：激光使用 /scan；相机默认使用 RealSense D435i 的 /camera/color/*
+  与 /camera/aligned_depth_to_color/*。
 - 控制链路：Nav2 最终输出到 /cmd_vel_twist（Twist），再由本包桥接到底盘使用的 /cmd_vel。
 """
 

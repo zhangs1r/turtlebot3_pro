@@ -27,6 +27,7 @@ def generate_launch_description():
     y_pose = LaunchConfiguration('y_pose')
     z_pose = LaunchConfiguration('z_pose')
     yaw = LaunchConfiguration('yaw')
+    gui = LaunchConfiguration('gui')
 
     localization = LaunchConfiguration('localization')
     database_path = LaunchConfiguration('database_path')
@@ -51,6 +52,7 @@ def generate_launch_description():
             'y_pose': y_pose,
             'z_pose': z_pose,
             'yaw': yaw,
+            'gui': gui,
         }.items(),
     )
 
@@ -101,6 +103,7 @@ def generate_launch_description():
         DeclareLaunchArgument('y_pose', default_value='0.0'),
         DeclareLaunchArgument('z_pose', default_value='0.01'),
         DeclareLaunchArgument('yaw', default_value='0.0'),
+        DeclareLaunchArgument('gui', default_value='true'),
         DeclareLaunchArgument('localization', default_value='false'),
         DeclareLaunchArgument('database_path', default_value='~/.ros/rtabmap.db'),
         DeclareLaunchArgument('qos', default_value='2'),

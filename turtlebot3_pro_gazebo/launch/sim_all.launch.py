@@ -13,6 +13,7 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, SetEnvironmentVariable, TimerAction
+from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
@@ -31,6 +32,7 @@ def generate_launch_description():
     y_pose = LaunchConfiguration('y_pose')
     z_pose = LaunchConfiguration('z_pose')
     yaw = LaunchConfiguration('yaw')
+    gui = LaunchConfiguration('gui')
 
     # 世界文件路径：<pkg_share>/worlds/<world_file>
     world_path = PathJoinSubstitution([pkg_share, 'worlds', world_file])
@@ -76,7 +78,8 @@ def generate_launch_description():
     gzclient_cmd = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(
             os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')
-        )
+        ),
+        condition=IfCondition(gui),
     )
 
     # TF 与 robot_description 发布（只管“机器人结构”，不负责物理仿真）
@@ -112,6 +115,7 @@ def generate_launch_description():
         DeclareLaunchArgument('y_pose', default_value='0.0'),
         DeclareLaunchArgument('z_pose', default_value='0.01'),
         DeclareLaunchArgument('yaw', default_value='0.0'),
+        DeclareLaunchArgument('gui', default_value='true'),
 
         gzserver_cmd,
         gzclient_cmd,

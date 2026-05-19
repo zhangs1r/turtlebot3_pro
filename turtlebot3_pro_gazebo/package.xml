@@ -13,6 +13,7 @@
   <exec_depend>launch_ros</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>gazebo_ros</exec_depend>
+  <exec_depend>turtlebot3_cartographer</exec_depend>
   <exec_depend>turtlebot3_pro_bringup</exec_depend>
   <exec_depend>turtlebot3_pro_description</exec_depend>
 

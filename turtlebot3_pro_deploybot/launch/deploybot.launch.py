@@ -21,6 +21,7 @@ def generate_launch_description():
     y_pose = LaunchConfiguration("y_pose")
     z_pose = LaunchConfiguration("z_pose")
     yaw = LaunchConfiguration("yaw")
+    gui = LaunchConfiguration("gui")
     use_deploy = LaunchConfiguration("use_deploy")
     deploy_delay_sec = LaunchConfiguration("deploy_delay_sec")
 
@@ -40,6 +41,7 @@ def generate_launch_description():
             "y_pose": y_pose,
             "z_pose": z_pose,
             "yaw": yaw,
+            "gui": gui,
         }.items(),
     )
 
@@ -61,13 +63,14 @@ def generate_launch_description():
             DeclareLaunchArgument("use_sim_time", default_value="true"),
             DeclareLaunchArgument(
                 "world_file",
-                default_value="/root/turtlebot3_ws/src/my_irl_robot/my_irl_robot/worlds/260114/260114.world",
+                default_value="robocup_home.world",
             ),
             DeclareLaunchArgument("use_slam_rviz", default_value="true"),
             DeclareLaunchArgument("x_pose", default_value="0.6"),
             DeclareLaunchArgument("y_pose", default_value="0.6"),
             DeclareLaunchArgument("z_pose", default_value="0.01"),
             DeclareLaunchArgument("yaw", default_value="0.0"),
+            DeclareLaunchArgument("gui", default_value="true"),
             DeclareLaunchArgument("use_deploy", default_value="true"),
             DeclareLaunchArgument("deploy_delay_sec", default_value="5.0"),
             slam_launch,

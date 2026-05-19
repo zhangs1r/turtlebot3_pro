@@ -110,10 +110,10 @@
       </sensor>
     </link>
 
-    <!-- 雷达链接 + Ray Sensor（发布 /scan） -->
+    <!-- RPLIDAR A2M12 链接 + Ray Sensor（发布 /scan） -->
     <link name="base_scan">
       <inertial>
-        <pose>-0.020 0 0.161 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <inertia>
           <ixx>0.001</ixx>
           <ixy>0.000</ixy>
@@ -122,65 +122,65 @@
           <iyz>0.000</iyz>
           <izz>0.001</izz>
         </inertia>
-        <mass>0.114</mass>
+        <mass>0.19</mass>
       </inertial>
 
       <collision name="lidar_sensor_collision">
-        <pose>-0.020 0 0.161 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
           <cylinder>
-            <radius>0.0508</radius>
-            <length>0.055</length>
+            <radius>0.038</radius>
+            <length>0.041</length>
           </cylinder>
         </geometry>
       </collision>
 
       <visual name="lidar_sensor_visual">
-        <pose>-0.032 0 0.171 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <geometry>
-          <mesh>
-            <uri>model://turtlebot3_common/meshes/sensors/lds.stl</uri>
-            <scale>0.001 0.001 0.001</scale>
-          </mesh>
+          <cylinder>
+            <radius>0.038</radius>
+            <length>0.041</length>
+          </cylinder>
         </geometry>
         <material>
-          <ambient>0.2 0.2 0.2 1.0</ambient>
-          <diffuse>0.2 0.2 0.2 1.0</diffuse>
+          <ambient>0.08 0.08 0.08 1.0</ambient>
+          <diffuse>0.08 0.08 0.08 1.0</diffuse>
         </material>
       </visual>
 
-      <sensor name="hls_lfcd_lds" type="ray">
+      <sensor name="rplidar_a2m12" type="ray">
         <!--
-          雷达参数说明：
-          - samples=360：1度分辨率
-          - min/max：0.12~3.5m（按 TB3 典型范围）
-          - update_rate=5Hz：当前设定偏低，建图可按需提高
+          RPLIDAR A2M12 仿真近似：
+          - 360° 扫描，按实车 rosbag 近似为 1800 samples/rev（约 0.2°）
+          - 0.15~16m 量程，典型 10Hz
+          - topic/frame 保持 /scan + base_scan，兼容 Nav2/Cartographer/RTAB-Map
         -->
         <always_on>true</always_on>
         <visualize>false</visualize>
-        <pose>-0.032 0 0.171 0 0 0</pose>
-        <update_rate>5</update_rate>
+        <pose>0 0 0 0 0 0</pose>
+        <update_rate>10</update_rate>
         <ray>
           <scan>
             <horizontal>
-              <samples>360</samples>
+              <samples>1800</samples>
               <resolution>1.000000</resolution>
-              <min_angle>0.000000</min_angle>
-              <max_angle>6.280000</max_angle>
+              <min_angle>-3.14159265</min_angle>
+              <max_angle>3.14159265</max_angle>
             </horizontal>
           </scan>
           <range>
-            <min>0.120000</min>
-            <max>3.5</max>
-            <resolution>0.015000</resolution>
+            <min>0.150000</min>
+            <max>16.0</max>
+            <resolution>0.010000</resolution>
           </range>
           <noise>
             <type>gaussian</type>
             <mean>0.0</mean>
-            <stddev>0.01</stddev>
+            <stddev>0.015</stddev>
           </noise>
         </ray>
-        <plugin name="turtlebot3_laserscan" filename="libgazebo_ros_ray_sensor.so">
+        <plugin name="rplidar_a2m12_laserscan" filename="libgazebo_ros_ray_sensor.so">
           <ros>
             <!-- <namespace>/tb3</namespace> -->
             <remapping>~/out:=scan</remapping>
@@ -352,10 +352,10 @@
       </collision>
     </link>
 
-    <!-- 相机链接 + 深度相机插件（模拟 RealSense 话题风格） -->
+    <!-- RealSense D435i 近似模型 + 深度相机插件 -->
     <link name="camera_link">
       <inertial>
-        <pose>0.012 0.0 0.155 0 0 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <inertia>
           <ixx>0.001</ixx>
           <ixy>0.000</ixy>
@@ -364,36 +364,57 @@
           <iyz>0.000</iyz>
           <izz>0.001</izz>
         </inertia>
-        <mass>0.035</mass>
+        <mass>0.072</mass>
       </inertial>
 
-      <pose>0.012 0.0 0.155 0 0 0</pose>
+      <collision name="realsense_d435i_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.025 0.025</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="realsense_d435i_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.090 0.025 0.025</size>
+          </box>
+        </geometry>
+        <material>
+          <ambient>0.05 0.08 0.14 1.0</ambient>
+          <diffuse>0.05 0.08 0.14 1.0</diffuse>
+        </material>
+      </visual>
+
       <sensor name="camera" type="depth">
         <always_on>true</always_on>
         <visualize>true</visualize>
-        <update_rate>10</update_rate>
+        <update_rate>15</update_rate>
         <camera name="camera">
-          <horizontal_fov>1.39626</horizontal_fov>
+          <horizontal_fov>1.51844</horizontal_fov>
           <image>
             <width>640</width>
             <height>480</height>
             <format>R8G8B8</format>
           </image>
           <clip>
-            <near>0.03</near>
-            <far>10.0</far>
+            <near>0.30</near>
+            <far>3.0</far>
           </clip>
         </camera>
         <plugin name="camera_driver" filename="libgazebo_ros_camera.so">
           <alwaysOn>true</alwaysOn>
-          <updateRate>10.0</updateRate>
+          <updateRate>15.0</updateRate>
           <cameraName>camera</cameraName>
           <frameName>camera_link</frameName>
-          <!-- 对齐本项目 RTAB-Map 订阅约定 -->
-          <imageTopicName>color/image_raw</imageTopicName>
-          <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
-          <depthImageTopicName>aligned_depth_to_color/image_raw</depthImageTopicName>
-          <depthImageCameraInfoTopicName>aligned_depth_to_color/camera_info</depthImageCameraInfoTopicName>
+          <!-- Legacy tags are kept for older gazebo_ros_camera variants. -->
+          <imageTopicName>/camera/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/camera/color/camera_info</cameraInfoTopicName>
+          <depthImageTopicName>/camera/aligned_depth_to_color/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>/camera/aligned_depth_to_color/camera_info</depthImageCameraInfoTopicName>
           <hackBaseline>0.07</hackBaseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>
@@ -401,6 +422,10 @@
           <distortionT1>0.0</distortionT1>
           <distortionT2>0.0</distortionT2>
           <ros>
+            <remapping>camera/image_raw:=camera/color/image_raw</remapping>
+            <remapping>camera/camera_info:=camera/color/camera_info</remapping>
+            <remapping>camera/depth/image_raw:=camera/aligned_depth_to_color/image_raw</remapping>
+            <remapping>camera/depth/camera_info:=camera/aligned_depth_to_color/camera_info</remapping>
           </ros>
         </plugin>
       </sensor>
@@ -448,7 +473,7 @@
     <joint name="lidar_joint" type="fixed">
       <parent>base_link</parent>
       <child>base_scan</child>
-      <pose>-0.032 0 0.171 0 0 0</pose>
+      <pose>-0.032 0 0.172 0 0 0</pose>
       <axis>
         <xyz>0 0 1</xyz>
       </axis>
@@ -457,7 +482,7 @@
     <joint name="camera_joint" type="fixed">
       <parent>base_link</parent>
       <child>camera_link</child>
-      <pose>0.012 0.0 0.155 0 0 0</pose>
+      <pose>0.012 0.0 0.165 0 0 0</pose>
       <axis>
         <xyz>0 0 1</xyz>
       </axis>
